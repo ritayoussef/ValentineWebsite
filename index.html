@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day</title>
+    <style>
+       
+        body {
+            background: url('./assets/images/background.avif') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .content {
+            margin-top: 100px;
+            position: relative;
+        }
+    
+		@font-face {
+    font-family: 'ValentineCupcake';
+    src: url('./assets/fonts/valentine-cupcake-font/ValentineCupcake-e9ZJB.ttf') format('truetype');
+		}
+
+		h1 {
+    font-family: 'ValentineCupcake', Arial, sans-serif; /* Use the font name declared in @font-face */
+    font-size: 50px;
+    color: red;
+		}
+
+        .yes-button {
+            font-size: 28px;
+            padding: 15px 30px;
+            margin: 10px;
+            cursor: pointer;
+            background-color: pink; /* Changed button color to pink */
+            color: white;
+            border: none;
+            border-radius: 10px;
+            position: relative;
+        }
+        .yes-button::after {
+            content: '';
+            position: absolute;
+            bottom: -30px; /* Adjust the position of the arrow */
+            left: 50%;
+            transform: translateX(-50%); /* Keep the arrow pointing upwards */
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent; /* Made the arrow wider */
+            border-right: 15px solid transparent;
+            border-bottom: 30px solid red; /* Made the arrow longer */
+            animation: arrowAnimation 1s ease-in-out infinite; /* Animation for the arrow */
+        }
+        @keyframes arrowAnimation {
+            0% {
+                transform: translateX(-50%) translateY(0) scale(1);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-10px) scale(1.2); /* Move the arrow upwards */
+            }
+            100% {
+                transform: translateX(-50%) translateY(0) scale(1); /* Return the arrow to original position */
+            }
+        }
+        .no-button {
+            font-size: 18px;
+            padding: 8px 16px;
+            margin: 10px;
+            cursor: pointer;
+            background-color: wheat;
+            color: black;
+            border: none;
+            border-radius: 10px;
+        }
+        .custom-alert {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+        }
+    </style>
+    <script>
+        function handleNo() {
+            document.getElementById("customAlert").style.display = "block";
+        }
+
+        function closeAlert() {
+            document.getElementById("customAlert").style.display = "none";
+        }
+
+        function handleYes() {
+            let audio = new Audio('./assets/sounds/Careless.mp3');
+            audio.play();
+            window.location.href = 'yes.html';
+        }
+    </script>
+</head>
+<body>
+    <div class="content">
+        <h1>Will you be my valentine?</h1>
+        <button class="yes-button" onclick="handleYes()">Yes</button>
+        <button class="no-button" onclick="handleNo()">No</button>
+    </div>
+    
+    <div id="customAlert" class="custom-alert">
+        <p>You can't refuse, please think again.</p>
+        <img src="./assets/images/withouYou.gif" width="200" />
+        <br>
+        <button onclick="closeAlert()">Okay</button>
+    </div>
+</body>
+</html>
